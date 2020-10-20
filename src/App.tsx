@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Button } from '@material-ui/core';
+import { observer } from 'mobx-react';
+import React, { useContext } from 'react';
 import './App.css';
+import ContextApp from './component/ContextApp';
 
-function App() {
+const App = observer(() => {
+  const context = useContext(ContextApp)
+  // context.testowy = "aaa"
+  context.numer = 6
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+      <h1>{context.testowy}</h1>
+      <h1>{context.numer}</h1>
+      <Button
+        onClick={() => {
+          context.setTestowy("bbb")
+          context.testowy = "ccc"
+          console.log("App ->  context.testowy ", context.numer)
+          context.numer++
+
+        }}
+      >
+        ddd
+      </Button>
     </div>
   );
-}
+
+})
 
 export default App;
